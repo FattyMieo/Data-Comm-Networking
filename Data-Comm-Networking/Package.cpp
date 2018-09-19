@@ -54,15 +54,20 @@ void Package::Unpack(__data16 data)
 {
 	for (int i = DATACOUNT - 1; i >= 0; --i) //Read in reverse
 	{
-		__data16 bitMask = 0 - 1;		//All ones
-		bitMask = bitMask << bits[i];	//E.g. 11111110000
-		bitMask = ~bitMask;				//E.g. 00000001111
+		//Old
+		//__data16 bitMask = 0 - 1;			//All ones
+		//bitMask = bitMask << bits[i];		//E.g. 11111110000
+		//bitMask = ~bitMask;				//E.g. 00000001111
+
+		//Better alternative
+		__data16 bitmask = (1 << bits[i]) - 1;	//E.g. 00000001111
 
 		values[i] = data & bitMask;		//E.g.(0000000)1010
 		data = data >> bits[i];			//E.g. 1110110---->
 	}
 }
 */
+
 __data16 Package::Pack()
 {
 	__data16 ret = 0;
@@ -77,7 +82,8 @@ void Package::Unpack(__data16 data)
 {
 	for (int i = DATACOUNT - 1; i >= 0; --i)
 	{
-		values[i] = data & ~(((__data16)0 - 1) << bits[i]);
+		//values[i] = data & ~(((__data16)0 - 1) << bits[i]);
+		values[i] = data & (__data16)(1 << bits[i]) - 1;
 		data = data >> bits[i];
 	}
 }
