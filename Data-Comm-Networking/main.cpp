@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include "TypeDefinition.h"
 #include "Package.h"
 #include "main.h"
 
@@ -18,7 +19,7 @@ int main(void)
 	cout << "[SERVER] " << endl;
 
 	cout << "[SERVER] Packaging..." << endl;
-	unsigned short clientData = clientA->Pack();
+	ushort clientData = clientA->Pack();
 	cout << "[SERVER] Packed Data: " << clientData << endl;
 	cout << "[SERVER] " << endl;
 

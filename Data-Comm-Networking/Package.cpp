@@ -37,9 +37,9 @@ Package::~Package()
 
 }
 /*
-__data16 Package::Pack()
+ushort Package::Pack()
 {
-	__data16 ret = 0;
+	ushort ret = 0;
 
 	for (int i = 0; i < DATACOUNT; ++i)
 	{
@@ -50,17 +50,17 @@ __data16 Package::Pack()
 	return ret;
 }
 
-void Package::Unpack(__data16 data)
+void Package::Unpack(ushort data)
 {
 	for (int i = DATACOUNT - 1; i >= 0; --i) //Read in reverse
 	{
 		//Old
-		//__data16 bitMask = 0 - 1;			//All ones
+		//ushort bitMask = 0 - 1;			//All ones
 		//bitMask = bitMask << bits[i];		//E.g. 11111110000
 		//bitMask = ~bitMask;				//E.g. 00000001111
 
 		//Better alternative
-		__data16 bitmask = (1 << bits[i]) - 1;	//E.g. 00000001111
+		ushort bitmask = (1 << bits[i]) - 1;	//E.g. 00000001111
 
 		values[i] = data & bitMask;		//E.g.(0000000)1010
 		data = data >> bits[i];			//E.g. 1110110---->
@@ -68,9 +68,9 @@ void Package::Unpack(__data16 data)
 }
 */
 
-__data16 Package::Pack()
+ushort Package::Pack()
 {
-	__data16 ret = 0;
+	ushort ret = 0;
 
 	for (int i = 0; i < DATACOUNT; ++i)
 		ret = (ret << bits[i]) | values[i];
@@ -78,12 +78,12 @@ __data16 Package::Pack()
 	return ret;
 }
 
-void Package::Unpack(__data16 data)
+void Package::Unpack(ushort data)
 {
 	for (int i = DATACOUNT - 1; i >= 0; --i)
 	{
 		//values[i] = data & ~(((__data16)0 - 1) << bits[i]);
-		values[i] = data & (__data16)(1 << bits[i]) - 1;
+		values[i] = data & (ushort)(1 << bits[i]) - 1;
 		data = data >> bits[i];
 	}
 }
@@ -96,12 +96,12 @@ void Package::Print()
 	}
 }
 
-void DebugBinary(__data16 data)
+void DebugBinary(ushort data)
 {
-	std::bitset<sizeof(__data16) * 8> x(data); cout << x << endl; system("PAUSE");
+	std::bitset<sizeof(ushort) * 8> x(data); cout << x << endl; system("PAUSE");
 }
 
-void DebugBinary(unsigned int data)
+void DebugBinary(uint data)
 {
-	std::bitset<sizeof(unsigned int) * 8> x(data); cout << x << endl; system("PAUSE");
+	std::bitset<sizeof(uint) * 8> x(data); cout << x << endl; system("PAUSE");
 }

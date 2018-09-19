@@ -117,6 +117,10 @@
   <ItemGroup>
     <ClInclude Include="main.h" />
     <ClInclude Include="Package.h" />
+    <ClInclude Include="TypeDefinition.h" />
+    <ClInclude Include="UIntPacker.h" />
+    <ClInclude Include="UIntPacker_UseCase.h" />
+    <ClInclude Include="UIntSplitter.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
