@@ -11,10 +11,15 @@ class UIntSplitter
 	//Why do we need this?
 		//Easier to tranfser in byte array
 private:
-	byte m_bytes[4];
+	byte m_bytes[sizeof(uint)];
+	static const byte byteMask = (byte)255;
 
 public:
+	static const byte byteMaskz = (byte)255;
+	UIntSplitter();
+	virtual ~UIntSplitter();
 
-	void StoreUInt(unsigned int value); //store "1 unsigned int" value into "4 bytes"
-	unsigned int GetInt(void); //merge the bytes amd return the unsigned int value
+	byte* GetArray();
+	void Split(uint value); //store "1 unsigned int" value into "4 bytes"
+	uint Merge(void); //merge the bytes amd return the unsigned int value
 };

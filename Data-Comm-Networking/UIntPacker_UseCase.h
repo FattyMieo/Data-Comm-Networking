@@ -10,8 +10,8 @@
 //	packer.pack(value3, 5);
 //	packer.pack(value4, 2);
 //
-//	unsigned int value4T = packer.extract(2);
-//	unsigned int value3T = packer.extract(5);
-//	unsigned int value2T = packer.extract(4);
-//	unsigned int value1T = packer.extract(1);
+//	unsigned int value4T; packer.extract(value4T, 2);
+//	unsigned int value3T; packer.extract(value3T, 5);
+//	unsigned int value2T; packer.extract(value2T, 4);
+//	unsigned int value1T; packer.extract(value1T, 1);
 //}

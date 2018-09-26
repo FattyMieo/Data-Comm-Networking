@@ -22,7 +22,7 @@ Package::Package()
 	InitializeBitCount();
 }
 
-Package::Package(unsigned int num1, unsigned int num2, unsigned int num3, unsigned int num4)
+Package::Package(uint num1, uint num2, uint num3, uint num4)
 {
 	values[0] = num1;
 	values[1] = num2;

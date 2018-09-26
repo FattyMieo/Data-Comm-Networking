@@ -8,9 +8,12 @@ private:
 	uint m_bitCount; //to count how many bits are used.
 
 public:
+	UIntPacker();
+	virtual ~UIntPacker();
+
 	//pack the "value" into m_data, it retuns true if there are enough bits available 
 	//bitCount : the bit count of "value"
-	bool Pack(uint value, uint bitCount);
+	bool Pack(uint inValue, uint bitCount);
 
-	unsigned int Extract(uint bitCount);
+	bool Extract(uint& outValue, uint bitCount);
 };
