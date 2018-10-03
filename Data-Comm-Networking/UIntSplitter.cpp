@@ -32,11 +32,11 @@ uint UIntSplitter::Merge(void)
 {
 	uint ret = 0;
 
-	for (int i = 0; i < sizeof(uint); ++i)
+	for (int i = sizeof(uint) - 1; i >= 0; --i)
 	{
-		ret = m_bytes[i] | byteMask;
-
 		ret = ret << 8;
+
+		ret = ret | (uint)m_bytes[i];
 	}
 
 	return ret;

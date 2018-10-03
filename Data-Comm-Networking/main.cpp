@@ -1,51 +1,64 @@
 #include <iostream>
 #include <string>
 #include "TypeDefinition.h"
-#include "Package.h"
-#include "main.h"
+#include "UIntPacker.h"
+#include "UIntSplitter.h"
 
 using namespace std;
 
 int main(void)
 {
-	cout << "[SERVER] " << endl;
-	cout << "[SERVER] Server initialized" << endl;
-	cout << "[SERVER] " << endl;
+	UIntPacker packer;
+	packer.Pack(1, 1);
+	packer.Pack(15, 4);
+	packer.Pack(25, 5);
+	packer.Pack(1, 2);
 
-	Package* clientA = new Package(3, 1, 30, 0);
-	cout << "[SERVER] Client A initialized with values { ";
-	clientA->Print();
-	cout << "}" << endl;
-	cout << "[SERVER] " << endl;
+	unsigned int value1T = 0;
+	unsigned int value2T = 0;
+	unsigned int value3T = 0;
+	unsigned int value4T = 0;
 
-	cout << "[SERVER] Packaging..." << endl;
-	ushort clientData = clientA->Pack();
-	cout << "[SERVER] Packed Data: " << clientData << endl;
-	cout << "[SERVER] " << endl;
+	packer.Extract(value4T, 2);
+	packer.Extract(value3T, 5);
+	packer.Extract(value2T, 4);
+	packer.Extract(value1T, 1);
 
-	Package* clientB = new Package();
-	cout << "[SERVER] Client B initialized with values { ";
-	clientB->Print();
-	cout << "}" << endl;
-	cout << "[SERVER] " << endl;
+	cout << "value1T" << " = " << value1T << endl;
+	cout << "value2T" << " = " << value2T << endl;
+	cout << "value3T" << " = " << value3T << endl;
+	cout << "value4T" << " = " << value4T << endl;
 
-	cout << "[SERVER] Sent packed data from Client A to Client B..." << endl;
-	cout << "[SERVER] " << endl;
-
-	cout << "[SERVER] Unpackaging..." << endl;
-	clientB->Unpack(clientData);
-	cout << "[SERVER] Unpacked Data: { ";
-	clientB->Print();
-	cout << "}" << endl;
-	cout << "[SERVER] " << endl;
-
-	cout << "[SERVER] " << endl;
-	cout << "[SERVER] End of operation" << endl;
-	cout << endl;
 	system("PAUSE");
 
-	delete clientA;
-	delete clientB;
+	packer.Pack(value1T, 1);
+	packer.Pack(value2T, 4);
+	packer.Pack(value3T, 5);
+	packer.Pack(value4T, 2);
+
+	cout << packer.GetData() << endl;
+
+	UIntSplitter splitter;
+	splitter.Split(packer.GetData());
+
+	for (int i = 0; i < sizeof(uint); ++i)
+	{
+		cout << "m_byte[" << i << "] = " << (uint)splitter.GetArray()[i] << endl;
+	}
+
+	packer.SetData(splitter.Merge());
+
+	packer.Extract(value4T, 2);
+	packer.Extract(value3T, 5);
+	packer.Extract(value2T, 4);
+	packer.Extract(value1T, 1);
+
+	cout << "value1T" << " = " << value1T << endl;
+	cout << "value2T" << " = " << value2T << endl;
+	cout << "value3T" << " = " << value3T << endl;
+	cout << "value4T" << " = " << value4T << endl;
+
+	system("PAUSE");
 
 	return 0;
 }

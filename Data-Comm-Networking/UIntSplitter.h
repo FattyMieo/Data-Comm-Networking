@@ -12,10 +12,10 @@ class UIntSplitter
 		//Easier to tranfser in byte array
 private:
 	byte m_bytes[sizeof(uint)];
-	static const byte byteMask = (byte)255;
 
 public:
-	static const byte byteMaskz = (byte)255;
+	static const byte byteMask = (byte)255;
+
 	UIntSplitter();
 	virtual ~UIntSplitter();
 

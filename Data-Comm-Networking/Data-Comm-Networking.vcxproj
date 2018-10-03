@@ -111,6 +111,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Package_UseCase.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Package.cpp" />
     <ClCompile Include="UIntPacker.cpp" />
@@ -118,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DataSplitter.h" />
-    <ClInclude Include="main.h" />
     <ClInclude Include="Package.h" />
     <ClInclude Include="TypeDefinition.h" />
     <ClInclude Include="UIntPacker.h" />

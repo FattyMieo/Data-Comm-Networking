@@ -21,31 +21,61 @@ namespace UnitTest
 
 		TEST_METHOD(SplitterByteMaskIsCorrect)
 		{
-			Assert::AreEqual(UIntSplitter::byteMaskz, (const byte)11111111);
+			Assert::AreEqual(UIntSplitter::byteMask, (const byte)255);
 		}
 
-		TEST_METHOD(SplitterSplitsAndMerges)
+		TEST_METHOD(SplitterSplitsAndMerges_1)
+		{
+			UIntSplitter splitter;
+			splitter.Split(255);
+
+			Assert::AreEqual(splitter.GetArray()[0], (byte)255);
+			Assert::AreEqual(splitter.GetArray()[1], (byte)0);
+			Assert::AreEqual(splitter.GetArray()[2], (byte)0);
+			Assert::AreEqual(splitter.GetArray()[3], (byte)0);
+		}
+
+		TEST_METHOD(SplitterSplitsAndMerges_2)
+		{
+			UIntSplitter splitter;
+			splitter.Split(256);
+
+			Assert::AreEqual(splitter.GetArray()[0], (byte)0);
+			Assert::AreEqual(splitter.GetArray()[1], (byte)1);
+			Assert::AreEqual(splitter.GetArray()[2], (byte)0);
+			Assert::AreEqual(splitter.GetArray()[3], (byte)0);
+		}
+
+		TEST_METHOD(SplitterSplitsAndMerges_3a)
+		{
+			UIntSplitter splitter;
+			splitter.Split(1);
+
+			Assert::AreEqual(splitter.Merge(), (uint)1);
+		}
+
+		TEST_METHOD(SplitterSplitsAndMerges_3b)
+		{
+			UIntSplitter splitter;
+			splitter.Split(255);
+
+			Assert::AreEqual(splitter.Merge(), (uint)255);
+		}
+
+		TEST_METHOD(SplitterSplitsAndMerges_3c)
+		{
+			UIntSplitter splitter;
+			splitter.Split(256);
+
+			Assert::AreEqual(splitter.Merge(), (uint)256);
+		}
+
+		TEST_METHOD(SplitterSplitsAndMerges_4)
 		{
 			UIntSplitter splitter;
 			splitter.Split(123456);
 
 			Assert::AreEqual(splitter.Merge(), (uint)123456);
 		}
-
-		TEST_METHOD(SplitterSplitsValue)
-		{
-			Assert::IsTrue(false);
-		}
-
-		TEST_METHOD(SplitterMergesBytes)
-		{
-			Assert::IsTrue(false);
-		}
-
-		TEST_METHOD(PackerSplitsAndMerges)
-		{
-			Assert::IsTrue(false);
-		}
-
 	};
 }

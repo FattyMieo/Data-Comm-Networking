@@ -44,3 +44,13 @@ bool UIntPacker::Extract(uint& outValue, uint bitCount)
 
 	return true;
 }
+
+uint UIntPacker::GetData()
+{
+	return m_data;
+}
+
+void UIntPacker::SetData(uint data)
+{
+	m_data = data;
+}

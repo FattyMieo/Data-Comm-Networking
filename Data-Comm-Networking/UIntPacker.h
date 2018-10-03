@@ -16,4 +16,7 @@ public:
 	bool Pack(uint inValue, uint bitCount);
 
 	bool Extract(uint& outValue, uint bitCount);
+
+	uint GetData();
+	void SetData(uint data);
 };
